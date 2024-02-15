@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "958528202439",
+    "project_id": "getxcrud-3074f",
+    "storage_bucket": "getxcrud-3074f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:958528202439:android:59ece7a423c0390b3dc0e2",
+        "android_client_info": {
+          "package_name": "com.example.getx"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSfLSi8UptCmNoriU84YtT2GTNgi8CO48"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
