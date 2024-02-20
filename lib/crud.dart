@@ -24,7 +24,6 @@ class crud extends StatelessWidget {
             SizedBox(
             height: 100,
             ),
-            Text("Login", style: TextStyle(fontSize: 30, fontFamily: "font")),
     SizedBox(
     height: 80,
     ),
@@ -62,12 +61,13 @@ class crud extends StatelessWidget {
     fontWeight: FontWeight.bold,
     fontFamily: "font")))),
     ]),
-    floatingActionButton: FloatingActionButton(onPressed: () {
-      controller.adddetails(context);
-      controller.getDetails(context);
+      floatingActionButton: FloatingActionButton(onPressed: () {
+        controller.adddetails(context);
+        controller.getDetails(context);
 
 
-    },child: Icon(Icons.add),),
+      },child: Icon(Icons.add),),
+
     );
   }
 }

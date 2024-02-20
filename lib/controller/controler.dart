@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:getx/home.dart';
 
 import '../List.dart';
 import '../Models/modelclass.dart';
@@ -37,6 +38,7 @@ class countingcontroller extends GetxController {
     details["NAME"] = nameController.text.toString();
     details["ADDRES"] = addressController.text.toString();
 
+
     db.collection("SUDENTS").doc(id).set(details);
 
     print(nameController.text.toString()+"gggggggg");
@@ -50,7 +52,7 @@ if (value.docs.isNotEmpty){
   print(value.docs.toString());
   detailsList.clear();
   for (var value in value.docs){
-detailsList.add(modelClass(value.get("NAME"),value.get("ADDRES")));
+detailsList.add(modelClass(value.get("NAME"),value.get("ADDRES"),value.id));
 
   }
   print(detailsList.length.toString()+"aaaaaaaaaaaaaa");

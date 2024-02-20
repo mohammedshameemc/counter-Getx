@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:getx/crud.dart';
 import 'package:getx/home.dart';
 
+import 'List.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

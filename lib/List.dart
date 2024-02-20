@@ -47,6 +47,8 @@ class list extends StatelessWidget {
                 color: Colors.black,
                 height: 100,
                 width: 100,
-              ));
+              ),
+
+    );
   }
 }

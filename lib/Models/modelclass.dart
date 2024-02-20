@@ -1,5 +1,6 @@
 class modelClass{
 String name;
 String address;
-modelClass(this.name,this.address,);
+String id;
+modelClass(this.name,this.address,this.id);
 }
