@@ -10,19 +10,22 @@ class list extends StatelessWidget {
   list({super.key});
   final countingcontroller controller = Get.put(countingcontroller());
 
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar:
-            AppBar(title: Text("List"), backgroundColor: Colors.blue.shade200),
+            AppBar(automaticallyImplyLeading: false,
+                title: Text("List"), backgroundColor: Colors.blue.shade200),
         body: controller.detailsList.isNotEmpty
             ? ListView.builder(
                 itemCount: controller.detailsList.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.all(20),
-                    child: Container(
-                      color: Colors.blue.shade200,
+                    child: Container(decoration: BoxDecoration(color:     Colors.blue.shade200
+                        ,borderRadius: BorderRadius.circular(20)),
                       child: ListTile(
                         title: Text(controller.detailsList[index].name),
                         subtitle: Text(controller.detailsList[index].address),
@@ -30,6 +33,9 @@ class list extends StatelessWidget {
                           child: Row(
                             children: [
                               IconButton(onPressed: () {
+                                controller.editdetaails(controller.detailsList[index].id);
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>crud(from: "Edit",editid:controller.detailsList[index].id,)));
+
 
                               }, icon:Icon( Icons.edit)),
 
@@ -45,16 +51,26 @@ class list extends StatelessWidget {
                   );
                 },
               )
-            : Container(
-                color: Colors.black,
-                height: 100,
-                width: 100,
-              ),
+            : Center(
+              child: Container(
+                  color: Colors.grey,
+                  height: 100,
+                  width: 200,
+          child: Center(child: Text("Add pls one")),
+                ),
+            ),
       floatingActionButton: FloatingActionButton(onPressed: () {
-controller.cleardetails();
-        Navigator.push(context, MaterialPageRoute(builder: (context) =>crud()));
+        // controller.adddetails(context);
+        // controller.getDetails(context);
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>crud(from: "New",editid: "",)));
 
-      },child: Text("add next"),),
+
+      },child: Icon(Icons.add),),
+//       floatingActionButton: FloatingActionButton(onPressed: () {
+// controller.cleardetails();
+
+//
+//       },child: Text("add next"),),
 
     );
   }

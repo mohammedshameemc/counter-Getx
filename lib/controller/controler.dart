@@ -15,7 +15,6 @@ import '../Models/modelclass.dart';
 class countingcontroller extends GetxController {
   final FirebaseFirestore db = FirebaseFirestore.instance;
 
-
   RxInt count = 0.obs;
 
   void increment() {
@@ -26,10 +25,11 @@ class countingcontroller extends GetxController {
     count--;
   }
 
-  TextEditingController nameController=TextEditingController();
-  TextEditingController addressController=TextEditingController();
-  List<modelClass> detailsList=[];
-  void adddetails(BuildContext context){
+  TextEditingController nameController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+  List<modelClass> detailsList = [];
+
+  void adddetails(BuildContext context, String from, String editid) {
     print("gfxghcjhvhk");
 
     String id = DateTime.now().millisecondsSinceEpoch.toString();
@@ -38,33 +38,46 @@ class countingcontroller extends GetxController {
     details["NAME"] = nameController.text.toString();
     details["ADDRES"] = addressController.text.toString();
 
+    if (from == "New") {
+      db.collection("SUDENTS").doc(id).set(details);
+    } else {
+      db.collection("SUDENTS").doc(editid).update(details);
+    }
 
-    db.collection("SUDENTS").doc(id).set(details);
-
-    print(nameController.text.toString()+"gggggggg");
-getDetails(context);
+    print(nameController.text.toString() + "gggggggg");
+    getDetails(context);
   }
 
-  void getDetails(BuildContext context){
+  void getDetails(BuildContext context) {
     print("bdhfbiv");
-db.collection("SUDENTS").get().then((value) {
-if (value.docs.isNotEmpty){
-  print(value.docs.toString());
-  detailsList.clear();
-  for (var value in value.docs){
-detailsList.add(modelClass(value.get("NAME"),value.get("ADDRES"),value.id));
-
-  }
-  print(detailsList.length.toString()+"aaaaaaaaaaaaaa");
-  Navigator.push(context, MaterialPageRoute(builder: (context) =>list()));
-
-}
-});
+    db.collection("SUDENTS").get().then((value) {
+      if (value.docs.isNotEmpty) {
+        print(value.docs.toString());
+        detailsList.clear();
+        for (var value in value.docs) {
+          detailsList.add(
+              modelClass(value.get("NAME"), value.get("ADDRES"), value.id));
+        }
+        print(detailsList.length.toString() + "aaaaaaaaaaaaaa");
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => list()));
+      }
+    });
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text("Add successfully"),
       backgroundColor: Colors.cyan,
-    ) );
+    ));
     //Navigator.push(context, MaterialPageRoute(builder: (context) =>list()));
+  }
+
+  void editdetaails(String editid) {
+    db.collection("SUDENTS").doc(editid).get().then((value) {
+      if (value.exists) {
+        Map<dynamic, dynamic> map1 = value.data() as Map;
+        nameController.text = map1["NAME"].toString();
+        addressController.text = map1["ADDRES"].toString();
+      }
+    });
   }
 
   void deletedetails(selectid, BuildContext context) {
@@ -72,14 +85,12 @@ detailsList.add(modelClass(value.get("NAME"),value.get("ADDRES"),value.id));
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
       content: Text("Deleted successfully"),
       backgroundColor: Colors.cyan,
-    )
-    );
-getDetails(context);
+    ));
+    getDetails(context);
   }
 
-void cleardetails(){
+  void cleardetails() {
     nameController.clear();
     addressController.clear();
-}
-
+  }
 }

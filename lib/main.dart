@@ -1,8 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getx/crud.dart';
-import 'package:getx/home.dart';
 
 import 'List.dart';
 
@@ -28,7 +26,7 @@ class MyApp extends StatelessWidget {
       ),
 
       // home:home()
-      home:crud()
+      home:list()
     );
   }
 }
