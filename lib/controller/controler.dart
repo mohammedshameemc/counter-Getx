@@ -60,8 +60,26 @@ detailsList.add(modelClass(value.get("NAME"),value.get("ADDRES"),value.id));
 
 }
 });
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text("Add successfully"),
+      backgroundColor: Colors.cyan,
+    ) );
     //Navigator.push(context, MaterialPageRoute(builder: (context) =>list()));
   }
 
+  void deletedetails(selectid, BuildContext context) {
+    db.collection("SUDENTS").doc(selectid).delete();
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text("Deleted successfully"),
+      backgroundColor: Colors.cyan,
+    )
+    );
+getDetails(context);
+  }
+
+void cleardetails(){
+    nameController.clear();
+    addressController.clear();
+}
 
 }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:getx/crud.dart';
 
 import 'controller/controler.dart';
 
@@ -33,6 +34,7 @@ class list extends StatelessWidget {
                               }, icon:Icon( Icons.edit)),
 
                               IconButton(onPressed: () {
+                                controller.deletedetails(controller.detailsList[index].id, context);
 
                               }, icon:Icon( Icons.delete,color: Colors.red,)),
                             ],
@@ -48,6 +50,11 @@ class list extends StatelessWidget {
                 height: 100,
                 width: 100,
               ),
+      floatingActionButton: FloatingActionButton(onPressed: () {
+controller.cleardetails();
+        Navigator.push(context, MaterialPageRoute(builder: (context) =>crud()));
+
+      },child: Text("add next"),),
 
     );
   }
